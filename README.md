@@ -1,6 +1,6 @@
 # IncidentOps Agent
 
-IncidentOps Agent 是一面向 SRE / 运维场景的 AI Agent 项目。
+IncidentOps Agent 是一个面向 SRE / 运维场景的 AI Agent 项目。
 
 它从一条生产告警开始，自动检索 Runbook 和历史事故复盘，调用 MCP 工具查询日志、指标、部署记录，并生成根因假设、安全处置建议、事故工单和复盘报告。
 
@@ -69,6 +69,15 @@ incidentops-agent/
 - 在浏览器中渲染告警卡片
 - 点击告警后展示告警详情 JSON
 
+
+## Day 2 已完成功能
+
+- 创建 Runbook 知识文档
+- 创建历史事故复盘文档
+- 实现本地 RAG 文档索引
+- 实现关键词检索逻辑
+- 新增 `/api/rag/search` 检索接口
+
 ## 快速启动
 
 创建虚拟环境：
@@ -114,6 +123,7 @@ http://127.0.0.1:8000/docs
 | GET | `/api/health` | 健康检查接口 |
 | GET | `/api/alerts` | 获取模拟生产告警列表 |
 | GET | `/api/alerts/{alert_id}` | 获取单条告警详情 |
+| GET | `/api/rag/search?query=...` | 检索 Runbook 和历史事故复盘 |
 
 ## 当前演示效果
 

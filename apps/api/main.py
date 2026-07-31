@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+from rag.retrieve import search_knowledge
 
 
 app = FastAPI(
@@ -57,6 +58,17 @@ def get_alert(alert_id: str):
     return {
         "error": "alert_not_found",
         "message": f"Alert {alert_id} does not exist.",
+    }
+
+
+@app.get("/api/rag/search")
+def rag_search(query: str, top_k: int = 5):
+    results = search_knowledge(query=query, top_k=top_k)
+
+    return {
+        "query": query,
+        "top_k": top_k,
+        "results": results,
     }
 
 
