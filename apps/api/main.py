@@ -58,3 +58,6 @@ def get_alert(alert_id: str):
         "error": "alert_not_found",
         "message": f"Alert {alert_id} does not exist.",
     }
+
+
+app.mount("/", StaticFiles(directory="apps/web", html=True), name="web")

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IncidentOps Agent</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>IncidentOps War Room</h1>
+      <p>SRE incident triage, investigation, and postmortem workspace.</p>
+    </div>
+    <div class="status-pill">Day 1 Demo</div>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Alerts</h2>
+        <button id="refresh-alerts">Refresh</button>
+      </div>
+      <div id="alerts" class="alert-list"></div>
+    </section>
+
+    <section class="panel main-panel">
+      <h2>Investigation Timeline</h2>
+      <div id="timeline" class="empty-state">
+        Select an alert to start investigation.
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Agent Output</h2>
+      <pre id="agent-output">No output yet.</pre>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
