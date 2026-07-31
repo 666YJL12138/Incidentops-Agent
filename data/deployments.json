@@ -1,0 +1,20 @@
+[
+  {
+    "service": "checkout-api",
+    "version": "v1.18.3",
+    "previous_version": "v1.18.2",
+    "commit": "9f31c2a",
+    "author": "release-bot",
+    "time": "2026-07-30T10:05:00",
+    "summary": "Changed payment client timeout and retry policy"
+  },
+  {
+    "service": "payment-api",
+    "version": "v2.7.0",
+    "previous_version": "v2.6.5",
+    "commit": "a81c9ff",
+    "author": "release-bot",
+    "time": "2026-07-30T09:20:00",
+    "summary": "Refactored payment provider adapter"
+  }
+]

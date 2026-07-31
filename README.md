@@ -45,6 +45,11 @@ incidentops-agent/
       app.js
   agent/
   mcp_servers/
+    logs_server.py
+    metrics_server.py
+    deploy_server.py
+    ticket_server.py
+    tool_logic.py
   rag/
   skills/
   data/
@@ -52,6 +57,8 @@ incidentops-agent/
     metrics/
     runbooks/
     postmortems/
+  scripts/
+    demo_mcp_tools.py
   tests/
   docs/
   README.md
@@ -77,6 +84,19 @@ incidentops-agent/
 - 实现本地 RAG 文档索引
 - 实现关键词检索逻辑
 - 新增 `/api/rag/search` 检索接口
+
+
+## Day 3 已完成功能
+
+- 准备模拟生产日志数据
+- 准备模拟服务指标数据
+- 准备模拟部署记录
+- 实现日志 MCP 工具
+- 实现指标 MCP 工具
+- 实现部署 MCP 工具
+- 实现工单 MCP 工具
+- 新增工具验证脚本 `scripts/demo_mcp_tools.py`
+- 新增工具验证 API
 
 ## 快速启动
 
@@ -124,6 +144,10 @@ http://127.0.0.1:8000/docs
 | GET | `/api/alerts` | 获取模拟生产告警列表 |
 | GET | `/api/alerts/{alert_id}` | 获取单条告警详情 |
 | GET | `/api/rag/search?query=...` | 检索 Runbook 和历史事故复盘 |
+| GET | `/api/tools/logs?service=...&keyword=...` | 查询服务日志 |
+| GET | `/api/tools/metrics?service=...` | 查询服务指标 |
+| GET | `/api/tools/deployments?service=...` | 查询服务部署记录 |
+| POST | `/api/tools/tickets` | 创建事故工单 |
 
 ## 当前演示效果
 

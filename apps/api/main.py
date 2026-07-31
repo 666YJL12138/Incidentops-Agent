@@ -2,6 +2,12 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from rag.retrieve import search_knowledge
+from mcp_servers.tool_logic import (
+    create_ticket,
+    get_recent_deployments,
+    query_metrics,
+    search_logs,
+)
 
 
 app = FastAPI(
@@ -70,6 +76,33 @@ def rag_search(query: str, top_k: int = 5):
         "top_k": top_k,
         "results": results,
     }
+
+
+@app.get("/api/tools/logs")
+def api_search_logs(service: str, keyword: str = "", limit: int = 20):
+    return {
+        "service": service,
+        "keyword": keyword,
+        "results": search_logs(service=service, keyword=keyword, limit=limit),
+    }
+
+
+@app.get("/api/tools/metrics")
+def api_query_metrics(service: str):
+    return query_metrics(service=service)
+
+
+@app.get("/api/tools/deployments")
+def api_get_deployments(service: str):
+    return {
+        "service": service,
+        "deployments": get_recent_deployments(service=service),
+    }
+
+
+@app.post("/api/tools/tickets")
+def api_create_ticket(title: str, severity: str, summary: str):
+    return create_ticket(title=title, severity=severity, summary=summary)
 
 
 app.mount("/", StaticFiles(directory="apps/web", html=True), name="web")
