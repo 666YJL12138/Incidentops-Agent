@@ -6,3 +6,4 @@ data/chroma/
 *.log
 .DS_Store
 .vscode/
+data/*.db
