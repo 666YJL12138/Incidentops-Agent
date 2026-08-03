@@ -145,6 +145,19 @@ button:hover {
   line-height: 1.45;
 }
 
+.start-button {
+  width: 100%;
+  margin-top: 10px;
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+}
+
+.start-button:hover {
+  background: #185d64;
+  color: #ffffff;
+}
+
 .empty-state {
   border: 1px dashed var(--line);
   border-radius: 8px;
@@ -161,5 +174,105 @@ pre {
   padding: 12px;
   min-height: 220px;
   margin: 0;
+  font-size: 13px;
+}
+
+.incident-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafc;
+  margin-bottom: 14px;
+}
+
+.incident-header h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.incident-header p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.timeline-list,
+.card-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.timeline-item,
+.hypothesis-card,
+.action-card {
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.timeline-item strong {
+  color: var(--primary);
+}
+
+.timeline-item p,
+.hypothesis-card p,
+.action-card p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.hypothesis-card ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.action-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.risk {
+  flex: 0 0 auto;
+  padding: 3px 7px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.risk-low {
+  background: #047857;
+}
+
+.risk-high {
+  background: var(--warning);
+}
+
+.approve-button {
+  margin-top: 10px;
+  background: var(--warning);
+  color: #ffffff;
+  border: none;
+}
+
+.approve-button:hover {
+  background: #92400e;
+  color: #ffffff;
+}
+
+.safe-action {
+  display: inline-block;
+  margin-top: 10px;
+  color: #047857;
   font-size: 13px;
 }
