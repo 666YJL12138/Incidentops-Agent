@@ -12,28 +12,62 @@
       <h1>IncidentOps War Room</h1>
       <p>SRE incident triage, investigation, and postmortem workspace.</p>
     </div>
-    <div class="status-pill">Day 1 Demo</div>
+    <div class="status-pill">Day 6 War Room</div>
   </header>
 
   <main class="layout">
-    <section class="panel">
+    <section class="panel left-panel">
       <div class="panel-header">
         <h2>Alerts</h2>
         <button id="refresh-alerts">Refresh</button>
       </div>
+
       <div id="alerts" class="alert-list"></div>
+
+      <div class="service-overview">
+        <h2>Service Overview</h2>
+        <div id="service-overview" class="overview-grid">
+          <div class="overview-item">
+            <span>Active Incident</span>
+            <strong id="active-incident-count">0</strong>
+          </div>
+          <div class="overview-item">
+            <span>Highest Severity</span>
+            <strong id="highest-severity">-</strong>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="panel main-panel">
-      <h2>Investigation Timeline</h2>
+      <div class="workspace-header">
+        <div>
+          <h2 id="workspace-title">Investigation Workspace</h2>
+          <p id="workspace-subtitle">Select an alert to start investigation.</p>
+        </div>
+        <span id="incident-status" class="status-pill">Idle</span>
+      </div>
+
       <div id="timeline" class="empty-state">
         Select an alert to start investigation.
       </div>
     </section>
 
-    <section class="panel">
-      <h2>Agent Output</h2>
-      <pre id="agent-output">No output yet.</pre>
+    <section class="panel evidence-panel">
+      <h2>Evidence</h2>
+
+      <div class="evidence-tabs">
+        <button class="tab-button active" data-tab="raw">Raw</button>
+        <button class="tab-button" data-tab="knowledge">RAG</button>
+        <button class="tab-button" data-tab="logs">Logs</button>
+        <button class="tab-button" data-tab="metrics">Metrics</button>
+        <button class="tab-button" data-tab="deployments">Deploy</button>
+        <button class="tab-button" data-tab="postmortem">Postmortem</button>
+      </div>
+
+      <div id="evidence-content" class="evidence-content">
+        <pre id="agent-output">No output yet.</pre>
+      </div>
     </section>
   </main>
 
