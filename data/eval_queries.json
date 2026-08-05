@@ -1,0 +1,42 @@
+[
+  {
+    "query": "API 5xx spike after deployment",
+    "expected_source": "api-5xx-spike.md"
+  },
+  {
+    "query": "checkout release introduced retry regression",
+    "expected_source": "checkout-deploy-regression.md"
+  },
+  {
+    "query": "payment provider timeout",
+    "expected_source": "payment-provider-timeout.md"
+  },
+  {
+    "query": "payment API latency and retry",
+    "expected_source": "payment-timeout.md"
+  },
+  {
+    "query": "database connection pool exhausted",
+    "expected_source": "database-connection-pool.md"
+  },
+  {
+    "query": "slow query occupied all database connections",
+    "expected_source": "database-pool-exhausted.md"
+  },
+  {
+    "query": "Kubernetes pod CrashLoopBackOff",
+    "expected_source": "k8s-crashloop.md"
+  },
+  {
+    "query": "container repeatedly restarts after deployment",
+    "expected_source": "k8s-crashloop.md"
+  },
+  {
+    "query": "checkout 5xx and high p95 latency",
+    "expected_source": "api-5xx-spike.md"
+  },
+  {
+    "query": "third party payment service became unstable",
+    "expected_source": "payment-provider-timeout.md"
+  }
+]
