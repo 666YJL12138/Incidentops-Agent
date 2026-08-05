@@ -1,6 +1,8 @@
 const alertsEl = document.querySelector("#alerts");
 const timelineEl = document.querySelector("#timeline");
 const refreshButton = document.querySelector("#refresh-alerts");
+const alertForm = document.querySelector("#alert-form");
+const submitAlertStatus = document.querySelector("#submit-alert-status");
 const evidenceContentEl = document.querySelector("#evidence-content");
 const workspaceTitleEl = document.querySelector("#workspace-title");
 const workspaceSubtitleEl = document.querySelector("#workspace-subtitle");
@@ -366,6 +368,34 @@ async function loadAlerts() {
   }
 }
 
+alertForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const service = document.querySelector("#custom-service").value.trim();
+  const severity = document.querySelector("#custom-severity").value;
+  const message = document.querySelector("#custom-message").value.trim();
+
+  submitAlertStatus.textContent = "Agent is investigating...";
+
+  try {
+    const state = await api("/api/incidents/start-from-alert", {
+      method: "POST",
+      body: JSON.stringify({
+        service,
+        severity,
+        message,
+        status: "open",
+      }),
+    });
+
+    renderIncident(state);
+    submitAlertStatus.textContent =
+      `Investigation completed: ${state.incident_id}`;
+  } catch (error) {
+    submitAlertStatus.textContent =
+      `Failed to analyze alert: ${error.message}`;
+  }
+});
 document.querySelectorAll(".tab-button").forEach(button => {
   button.addEventListener("click", () => {
     setActiveEvidenceTab(button.dataset.tab);

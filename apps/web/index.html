@@ -23,6 +23,39 @@
       </div>
 
       <div id="alerts" class="alert-list"></div>
+      <div class="submit-alert">
+        <h2>Submit Alert</h2>
+
+        <form id="alert-form">
+          <label>
+            Service
+            <input id="custom-service" value="checkout-api" required />
+          </label>
+
+          <label>
+            Severity
+            <select id="custom-severity">
+              <option value="P1">P1 - Critical</option>
+              <option value="P2">P2 - High</option>
+              <option value="P3">P3 - Medium</option>
+            </select>
+          </label>
+
+          <label>
+            Alert Message
+            <textarea
+              id="custom-message"
+              rows="4"
+              placeholder="Describe the production alert..."
+              required
+            ></textarea>
+          </label>
+
+          <button type="submit">Analyze Alert</button>
+        </form>
+
+        <p id="submit-alert-status"></p>
+      </div>
 
       <div class="service-overview">
         <h2>Service Overview</h2>

@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from agent.state import IncidentState
-from pydantic import BaseModel
+from typing import Literal
+from uuid import uuid4
+from pydantic import BaseModel, Field
 from rag.retrieve import search_knowledge
 from mcp_servers.tool_logic import (
     create_ticket,
@@ -9,7 +11,6 @@ from mcp_servers.tool_logic import (
     query_metrics,
     search_logs,
 )
-from pydantic import BaseModel
 
 from agent.graph import run_investigation
 from apps.api.incident_store import (
@@ -31,6 +32,13 @@ init_db()
 
 class StartIncidentRequest(BaseModel):
     alert_id: str
+
+
+class CustomAlertRequest(BaseModel):
+    service: str = Field(min_length=1, max_length=100)
+    severity: Literal["P1", "P2", "P3"]
+    message: str = Field(min_length=1, max_length=1000)
+    status: str = "open"
 
 
 class ApproveActionRequest(BaseModel):
@@ -143,6 +151,22 @@ def start_incident(request: StartIncidentRequest):
             "error": "alert_not_found",
             "message": f"Alert {request.alert_id} does not exist.",
         }
+
+    state = run_investigation(alert)
+    save_incident(state)
+
+    return state.model_dump()
+
+
+@app.post("/api/incidents/start-from-alert")
+def start_incident_from_alert(request: CustomAlertRequest):
+    alert = {
+        "id": f"manual-{uuid4().hex[:8]}",
+        "service": request.service.strip(),
+        "severity": request.severity,
+        "message": request.message.strip(),
+        "status": request.status,
+    }
 
     state = run_investigation(alert)
     save_incident(state)
